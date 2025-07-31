@@ -103,6 +103,7 @@
 		}
 
 		if (tickers.includes(trimmedTicker)) {
+			// error = 'Ticker already added';
             newTicker = '';
 			return;
 		}
@@ -302,7 +303,7 @@
 		<p class="text-red-500">{error}</p>
 	{:else if stocksData.length > 0}
 		<!-- Auto-update controls -->
-		<div class="flex w-full max-w-6xl items-center justify-between">
+		<div class="flex w-full max-w-7xl items-center justify-between">
 			<div class="text-sm text-muted-foreground">
 				{#if updateInterval}
 					🟢 Auto-updating every 10 seconds
