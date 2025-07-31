@@ -57,5 +57,8 @@
 		"onlyBuiltDependencies": [
 			"esbuild"
 		]
+	},
+	"dependencies": {
+		"yahoo-finance2": "^2.13.3"
 	}
 }
