@@ -257,7 +257,7 @@
 			<Card.Header>
 				<div class="flex items-center justify-between">
 					<div>
-						<Card.Title class="text-xl">{stockData.shortName} ({stockData.symbol})</Card.Title>
+						<Card.Title class="text-xl"> <a href={`/stock/${stockData.symbol}`}>{stockData.shortName} ({stockData.symbol})</a></Card.Title>
 						<Card.Description class="text-sm text-muted-foreground"
 							>{stockData.fullExchangeName}</Card.Description
 						>

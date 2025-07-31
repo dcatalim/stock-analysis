@@ -340,7 +340,7 @@
 					<Card.Header>
 						<div class="flex items-center justify-between">
 							<div>
-								<Card.Title class="text-lg">{stock.shortName} ({stock.symbol})</Card.Title>
+								<Card.Title class="text-lg"><a href="/stock/{stock.symbol}">{stock.shortName} ({stock.symbol})</a></Card.Title>
 								<Card.Description class="text-xs text-muted-foreground"
 									>{stock.fullExchangeName}</Card.Description
 								>
