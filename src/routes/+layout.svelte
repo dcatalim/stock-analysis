@@ -9,11 +9,11 @@
 <ModeWatcher />
 
 <header class="flex items-center justify-between border-b p-4">
-	<h1>Stock Analysis</h1>
+	<h1 class="text-2xl font-bold">Stock Analysis</h1>
 	<nav class="flex items-center gap-4">
 		<a href="/">Home</a>
 		<a href="/search">Search</a>
-		<a href="/api/quote">API Quote</a>
+		<a href="/compare">Compare</a>
 		<ThemeToggle />
 	</nav>
 </header>

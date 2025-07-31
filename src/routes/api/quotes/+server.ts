@@ -5,29 +5,29 @@ import yahooFinance from 'yahoo-finance2';
 export const POST: RequestHandler = async ({ request }) => {
 	try {
 		const body = await request.json();
-		const { ticker } = body;
+		const { tickers } = body;
 
 		// Input validation
-		if (!ticker || typeof ticker !== 'string') {
-			return json({ error: 'Valid ticker symbol is required' }, { status: 400 });
+		if (!Array.isArray(tickers) || tickers.length === 0) {
+			return json({ error: 'Valid ticker symbols are required' }, { status: 400 });
 		}
 
-		// Sanitize ticker (remove whitespace, convert to uppercase)
-		const sanitizedTicker = ticker.trim().toUpperCase();
+		// Sanitize tickers (remove whitespace, convert to uppercase)
+		const sanitizedTickers = tickers.map((ticker) => ticker.trim().toUpperCase());
 
-		if (sanitizedTicker.length === 0 || sanitizedTicker.length > 10) {
-			return json({ error: 'Ticker symbol must be 1-10 characters' }, { status: 400 });
+		if (sanitizedTickers.some((ticker) => ticker.length === 0 || ticker.length > 10)) {
+			return json({ error: 'Ticker symbols must be 1-10 characters' }, { status: 400 });
 		}
 
-		// Rate limiting could be added here
-		const quote = await yahooFinance.quote(sanitizedTicker);
+		// Fetch quotes for all tickers
+		const quotes = await Promise.all(sanitizedTickers.map((ticker) => yahooFinance.quote(ticker)));
 
 		// Validate response
-		if (!quote || !quote.symbol) {
+		if (!quotes || quotes.some((quote) => !quote.symbol)) {
 			return json({ error: 'Stock not found or invalid ticker' }, { status: 404 });
 		}
 
-		return json(quote);
+		return json(quotes);
 	} catch (error) {
 		console.error('API Error:', error);
 
