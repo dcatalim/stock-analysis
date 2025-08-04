@@ -4,8 +4,9 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "my-svelte-app",
+	"name": "stock-analysis",
 	"main": ".svelte-kit/cloudflare/_worker.js",
+	"compatibility_flags": ["node", "nodejs_compat"],
 	"compatibility_date": "2025-08-03",
 	"assets": {
 		"binding": "ASSETS",
